@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'pushbullet/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'Pushbullet'
+  spec.name          = 'Pushbullet Client'
   spec.version       = Pushbullet::VERSION
   spec.authors       = ['trex22']
   spec.email         = ['contact@jasonchalom.com']
