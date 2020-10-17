@@ -6,7 +6,6 @@ require 'pushbullet/constants'
 
 # Endpoints
 
-
 require 'pushbullet/client'
 
 module Luno

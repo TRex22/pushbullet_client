@@ -71,7 +71,7 @@ module Pushbullet
     private
 
     def authorise_and_send(http_method:, path:, payload: {}, params: {})
-      start_time = get_micro_second_time
+      start_time = micro_second_time_now
 
       response = HTTParty.send(
         http_method.to_sym,
@@ -85,7 +85,7 @@ module Pushbullet
         format: :json
       )
 
-      end_time = get_micro_second_time
+      end_time = micro_second_time_now
       construct_response_object(response, path, start_time, end_time)
     end
 
@@ -127,8 +127,8 @@ module Pushbullet
       response.body
     end
 
-    def get_micro_second_time
-      (Time.now.to_f * 1000000).to_i
+    def micro_second_time_now
+      (Time.now.to_f * 1_000_000).to_i
     end
 
     def construct_base_path(path, params)
