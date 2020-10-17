@@ -23,11 +23,11 @@ Or install it yourself as:
 
 ```ruby
   require 'pushbullet_client'
-  client  = PushBullet::Client.new(key: 'your key', secret: 'your secret')
+  client  = PushBullet::Client.new(access_token: 'your access_token')
 ```
 
 ### Endpoints
-  -
+  TODO: ... this section will be filled in the future
 
 ### Constants
   Constants
