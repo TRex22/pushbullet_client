@@ -3,53 +3,19 @@ module Pushbullet
     include ::Pushbullet::Constants
 
     # Endpoints
+    include ::Pushbullet::Chats
+    include ::Pushbullet::Devices
+    include ::Pushbullet::Permanents
+    include ::Pushbullet::Pushes
+    include ::Pushbullet::Subscriptions
+    include ::Pushbullet::Texts
+    include ::Pushbullet::Users
 
     # TODO: Cleanup modules
     # TODO: Pagination
     # TODO: Limits
     # TODO: Date parsing
     # TODO: Create api client creation library
-
-    def me
-      path = 'users/me'
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    def devices
-      path = 'devices'
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    def pushes
-      path = 'pushes'
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    def chats
-      path = 'chats'
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    def subscriptions
-      path = 'subscriptions'
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    def texts
-      path = 'texts'
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    # See: https://stackoverflow.com/questions/38027963/pushbullet-api-thread-id-to-conversation-iden-for-sms
-    def permanents(device_identity:)
-      path = "permanents/#{device_identity}_threads"
-      authorise_and_send(http_method: :get, path: path)
-    end
-
-    def permanent_conversation(device_identity:, thread_id:)
-      path = "permanents/#{device_identity}_thread_#{thread_id}"
-      authorise_and_send(http_method: :get, path: path)
-    end
 
     attr_reader :key, :secret, :base_path, :port
 
