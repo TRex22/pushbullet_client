@@ -11,7 +11,11 @@ module Pushbullet
     include ::Pushbullet::Texts
     include ::Pushbullet::Users
 
-    # TODO: Cleanup modules
+    # TODO: Add uploads
+    # TODO: Add ephemerals
+    # TODO: Websockets
+    # TODO: Universal copy/paste
+    # TODO: Encryption
     # TODO: Pagination
     # TODO: Limits
     # TODO: Date parsing

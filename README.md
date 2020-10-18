@@ -27,7 +27,13 @@ Or install it yourself as:
 ```
 
 ### Endpoints
-  TODO: ... this section will be filled in the future
+  - Chats
+  - Devices
+  - Permanents
+  - Pushes
+  - Subscriptions
+  - Texts
+  - Users
 
 ### Constants
   Constants
