@@ -1,0 +1,3 @@
+#!/bin/bash
+gem build pushbullet_client.gemspec
+gem push pushbullet_client
