@@ -23,7 +23,7 @@ module Pushbullet
 
     attr_reader :key, :secret, :base_path, :port
 
-    def initialize(access_token:, base_path: 'https://api.pushbullet.com/v2', port: 80)
+    def initialize(access_token:, base_path: API_V2_BASE_PATH, port: 80)
       @access_token = access_token
       @base_path = base_path
       @port = port
