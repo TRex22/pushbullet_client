@@ -8,6 +8,6 @@ require 'pushbullet/constants'
 
 require 'pushbullet/client'
 
-module Luno
+module Pushbullet
   class Error < StandardError; end
 end
