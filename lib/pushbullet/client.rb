@@ -44,6 +44,10 @@ module Pushbullet
     def authorise_and_send(http_method:, path:, payload: {}, params: {})
       start_time = micro_second_time_now
 
+      if params.nil? || params.empty?
+        params = {}
+      end
+
       params['limit'] = @limit
 
       response = HTTParty.send(
@@ -76,7 +80,8 @@ module Pushbullet
       {
         'start_time' => start_time,
         'end_time' => end_time,
-        'total_time' => total_time
+        'total_time' => total_time,
+        'cursor' => response.dig('cursor')
       }
     end
 
@@ -116,6 +121,12 @@ module Pushbullet
 
     def process_params(params)
       params.keys.map { |key| "#{key}=#{params[key]}" }.join('&')
+    end
+
+    def process_cursor(cursor, params: {})
+      unless cursor.nil? || cursor.empty?
+        params['cursor'] = cursor
+      end
     end
   end
 end
