@@ -23,10 +23,11 @@ module Pushbullet
 
     attr_reader :key, :secret, :base_path, :port
 
-    def initialize(access_token:, base_path: API_V2_BASE_PATH, port: 80)
+    def initialize(access_token:, base_path: API_V2_BASE_PATH, port: 80, limit: 500)
       @access_token = access_token
       @base_path = base_path
       @port = port
+      @limit = limit
     end
 
     def self.compatible_api_version
@@ -42,6 +43,8 @@ module Pushbullet
 
     def authorise_and_send(http_method:, path:, payload: {}, params: {})
       start_time = micro_second_time_now
+
+      params['limit'] = @limit
 
       response = HTTParty.send(
         http_method.to_sym,
@@ -104,7 +107,7 @@ module Pushbullet
     def construct_base_path(path, params)
       constructed_path = "#{base_path}/#{path}"
 
-      if params != {}
+      if params == {}
         constructed_path
       else
         "#{constructed_path}?#{process_params(params)}"
