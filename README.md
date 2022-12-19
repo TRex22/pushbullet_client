@@ -22,8 +22,12 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-  require 'pushbullet_client'
-  client  = PushBullet::Client.new(access_token: 'your access_token')
+  require 'pushbullet'
+  client = Pushbullet::Client.new(access_token: 'your access_token')
+
+  # Some example calls
+  client.devices
+
 ```
 
 ### Endpoints
