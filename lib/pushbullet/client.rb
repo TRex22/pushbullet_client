@@ -127,6 +127,8 @@ module Pushbullet
       unless cursor.nil? || cursor.empty?
         params['cursor'] = cursor
       end
+
+      params
     end
   end
 end
