@@ -24,10 +24,9 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "httparty", "~> 0.21.0"
   spec.add_dependency "active_attr", "~> 0.15.4"
-  spec.add_dependency "nokogiri", "~> 1.13.10"
+  spec.add_dependency "nokogiri", "~> 1.14.0.rc1"
 
   # Development dependancies
-  spec.add_development_dependency "bundler", "~> 2.3.5"
   spec.add_development_dependency "rake", "~> 13.0.6"
   spec.add_development_dependency "minitest", "~> 5.15.0"
   spec.add_development_dependency "minitest-focus", "~> 1.3.1"
