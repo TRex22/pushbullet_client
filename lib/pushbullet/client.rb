@@ -28,6 +28,7 @@ module Pushbullet
       @base_path = base_path
       @port = port
       @limit = limit
+      @disable_limit = false # Used internally for permanents calls
     end
 
     def self.compatible_api_version
@@ -48,7 +49,9 @@ module Pushbullet
         params = {}
       end
 
-      params['limit'] = @limit
+      unless @disable_limit
+        params['limit'] = @limit
+      end
 
       response = HTTParty.send(
         http_method.to_sym,
