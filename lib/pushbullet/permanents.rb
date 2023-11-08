@@ -6,8 +6,10 @@ module Pushbullet
       params = process_cursor(cursor, params: params)
 
       path = "permanents/#{device_identity}_threads"
-      authorise_and_send(http_method: :get, path: path, params: params)
+      response = authorise_and_send(http_method: :get, path: path, params: params)
       @disable_limit = false
+
+      response
     end
 
     def permanent_conversation(device_identity:, thread_id:, params: {}, cursor: nil)
@@ -15,8 +17,10 @@ module Pushbullet
       params = process_cursor(cursor, params: params)
 
       path = "permanents/#{device_identity}_thread_#{thread_id}"
-      authorise_and_send(http_method: :get, path: path, params: params)
+      response = authorise_and_send(http_method: :get, path: path, params: params)
       @disable_limit = false
+
+      response
     end
   end
 end
