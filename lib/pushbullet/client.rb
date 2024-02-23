@@ -55,7 +55,7 @@ module Pushbullet
 
       begin
         response = send_request(http_method, path, params, payload)
-      rescue => Socket::ResolutionError
+      rescue
         # Retry once
         # TODO: Add in retry amounts
         response = send_request(http_method, path, params, payload)
