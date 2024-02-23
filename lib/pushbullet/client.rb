@@ -22,6 +22,7 @@ module Pushbullet
     # TODO: Create api client creation library
 
     attr_reader :key, :secret, :base_path, :port, :timeout
+    attr_writer :base_path
 
     def initialize(access_token:, base_path: API_V2_BASE_PATH, port: 80, limit: 500, timeout: 1000)
       @access_token = access_token
@@ -38,12 +39,18 @@ module Pushbullet
 
     # This is the version of the API docs this client was built off-of
     def self.api_version
-      'v2 2020-10-17'
+      'v2 2024-02-23'
+    end
+
+    def check_api
+      params = process_cursor(nil, params: {})
+      path = ''
+      authorise_and_send(http_method: :get, path: path, params: params, custom_base_path: API_BASE_PATH)
     end
 
     private
 
-    def authorise_and_send(http_method:, path:, payload: {}, params: {})
+    def authorise_and_send(http_method:, path:, payload: {}, params: {}, custom_base_path: nil)
       start_time = micro_second_time_now
 
       if params.nil? || params.empty?
@@ -55,21 +62,21 @@ module Pushbullet
       end
 
       begin
-        response = send_request(http_method, path, params, payload)
+        response = send_request(http_method, path, params, payload, custom_base_path)
       rescue
         # Retry once
         # TODO: Add in retry amounts
-        response = send_request(http_method, path, params, payload)
+        response = send_request(http_method, path, params, payload, custom_base_path)
       end
 
       end_time = micro_second_time_now
       construct_response_object(response, path, start_time, end_time)
     end
 
-    def send_request(http_method, path, params, payload)
+    def send_request(http_method, path, params, payload, custom_base_path)
       HTTParty.send(
         http_method.to_sym,
-        construct_base_path(path, params),
+        construct_base_path(path, params, custom_base_path: custom_base_path),
         body: payload,
         headers: {
           'Access-Token': @access_token,
@@ -124,8 +131,12 @@ module Pushbullet
       (Time.now.to_f * 1_000_000).to_i
     end
 
-    def construct_base_path(path, params)
-      constructed_path = "#{base_path}/#{path}"
+    def construct_base_path(path, params, custom_base_path: nil)
+      if custom_base_path
+        constructed_path = "#{custom_base_path}/#{path}"
+      else
+        constructed_path = "#{base_path}/#{path}"
+      end
 
       if params == {}
         constructed_path

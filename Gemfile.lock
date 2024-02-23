@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pushbullet_client (0.0.16)
+    pushbullet_client (0.0.19)
       active_attr (~> 0.16.0)
       httparty (~> 0.21.0)
       nokogiri (~> 1.16.2)
