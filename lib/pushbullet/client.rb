@@ -53,7 +53,20 @@ module Pushbullet
         params['limit'] = @limit
       end
 
-      response = HTTParty.send(
+      begin
+        response = send_request(http_method, path, params, payload)
+      rescue => Socket::ResolutionError
+        # Retry once
+        # TODO: Add in retry amounts
+        response = send_request(http_method, path, params, payload)
+      end
+
+      end_time = micro_second_time_now
+      construct_response_object(response, path, start_time, end_time)
+    end
+
+    def send_request(http_method, path, params, payload)
+      HTTParty.send(
         http_method.to_sym,
         construct_base_path(path, params),
         body: payload,
@@ -64,9 +77,6 @@ module Pushbullet
         port: port,
         format: :json
       )
-
-      end_time = micro_second_time_now
-      construct_response_object(response, path, start_time, end_time)
     end
 
     def construct_response_object(response, path, start_time, end_time)

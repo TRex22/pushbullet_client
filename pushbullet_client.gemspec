@@ -24,15 +24,15 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "httparty", "~> 0.21.0"
   spec.add_dependency "active_attr", "~> 0.16.0"
-  spec.add_dependency "nokogiri", "~> 1.16.0"
+  spec.add_dependency "nokogiri", "~> 1.16.2"
 
   # Development dependancies
   spec.add_development_dependency "rake", "~> 13.1.0"
-  spec.add_development_dependency "minitest", "~> 5.21.2"
+  spec.add_development_dependency "minitest", "~> 5.22.2"
   spec.add_development_dependency "minitest-focus", "~> 1.4.0"
   spec.add_development_dependency "minitest-reporters", "~> 1.6.1"
   spec.add_development_dependency "timecop", "~> 0.9.8"
   spec.add_development_dependency "mocha", "~> 2.1.0"
   spec.add_development_dependency "pry", "~> 0.14.2"
-  spec.add_development_dependency "webmock", "~> 3.19.1"
+  spec.add_development_dependency "webmock", "~> 3.22.0"
 end
