@@ -21,14 +21,15 @@ module Pushbullet
     # TODO: Date parsing
     # TODO: Create api client creation library
 
-    attr_reader :key, :secret, :base_path, :port
+    attr_reader :key, :secret, :base_path, :port, :timeout
 
-    def initialize(access_token:, base_path: API_V2_BASE_PATH, port: 80, limit: 500)
+    def initialize(access_token:, base_path: API_V2_BASE_PATH, port: 80, limit: 500, timeout: 1000)
       @access_token = access_token
       @base_path = base_path
       @port = port
       @limit = limit
       @disable_limit = false # Used internally for permanents calls
+      @timeout = timeout
     end
 
     def self.compatible_api_version
@@ -75,7 +76,8 @@ module Pushbullet
           'Content-Type': 'application/json'
         },
         port: port,
-        format: :json
+        format: :json,
+        timeout: timeout
       )
     end
 
