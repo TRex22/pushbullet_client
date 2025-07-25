@@ -22,13 +22,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency "httparty", "~> 0.22.0"
+  spec.add_dependency "httparty", "~> 0.23.0"
   spec.add_dependency "active_attr", "~> 0.17.0"
-  spec.add_dependency "nokogiri", "~> 1.16.7"
+  spec.add_dependency "nokogiri", "~> 1.18.0"
 
   # Development dependancies
   spec.add_development_dependency "rake", "~> 13.2.1"
-  spec.add_development_dependency "minitest", "~> 5.25.1"
+  spec.add_development_dependency "minitest", "~> 5.26.0"
   spec.add_development_dependency "minitest-focus", "~> 1.4.0"
   spec.add_development_dependency "minitest-reporters", "~> 1.7.1"
   spec.add_development_dependency "timecop", "~> 0.9.10"
