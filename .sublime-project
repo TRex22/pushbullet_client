@@ -1,0 +1,78 @@
+{
+  "folders": [
+    {
+      "path": ".",
+
+      "folder_exclude_patterns": [
+        // === Core VCS / tooling (never useful) ===
+        ".git",
+        ".bundle",
+        ".yarn",
+        ".sass-cache",
+        ".webpack",
+        ".pytest_cache",
+        "__pycache__",
+
+        // === Dependencies ===
+        "node_modules",
+        "vendor/bundle",
+        ".venv",
+        "venv",
+
+        // === Generated build output ===
+        "public/packs",
+        "public/packs-test",
+        "public/assets",
+        "dist",
+        "build",
+
+        // === Runtime noise (truly never useful) ===
+        "log",
+        "coverage",
+        "tmp/cache",
+        "tmp/pids",
+        "tmp/sockets",
+        "tmp/storage"
+        // Note: tmp/ itself is intentionally NOT excluded here —
+        // see index_exclude_patterns below so it stays browsable.
+      ],
+
+      "file_exclude_patterns": [
+        // === Compiled / minified ===
+        "*.min.js",
+        "*.min.css",
+        "*.map",
+        "*.pyc",
+        "*.pyo",
+
+        // === Logs & runtime debris ===
+        "*.log",
+        ".DS_Store",
+        "*.swp",
+        "*.orig",
+        "*.rej"
+      ],
+
+      // Visible in sidebar + openable, but NOT symbol-indexed.
+      // This is the main lever for reducing memory without losing access.
+      "index_exclude_patterns": [
+        // tmp docs you open occasionally but don't need to Goto-Symbol in
+        "tmp/*",
+
+        // Lock files are huge and never searched by symbol
+        "Gemfile.lock",
+        "yarn.lock",
+        "package-lock.json",
+        "*.lock",
+
+        // Rails generated schema — large, auto-written, not hand-edited
+        "db/schema.rb",
+
+        // AWS / CDK generated manifests
+        "cdk.out/*",
+        "*.tfstate",
+        "*.tfstate.backup"
+      ]
+    }
+  ]
+}
