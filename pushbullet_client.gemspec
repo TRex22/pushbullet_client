@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency "httparty", "~> 0.24.2"
-  spec.add_dependency "active_attr", "~> 0.17.2"
   spec.add_dependency "nokogiri", "~> 1.19.2"
 
   # Development dependancies
