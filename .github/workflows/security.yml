@@ -1,0 +1,21 @@
+on:
+  pull_request: {}
+  push:
+    branches:
+    - main
+    - master
+  schedule:
+  - cron: '0 6 * * 1'
+name: Security
+jobs:
+  bundle-audit:
+    name: Bundle Audit
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3'
+        bundler-cache: true
+    - name: Run bundle audit
+      run: bundle exec bundle-audit check --update
