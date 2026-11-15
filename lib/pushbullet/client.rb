@@ -1,3 +1,5 @@
+require 'oj'
+
 module Pushbullet
   class Client
     include ::Pushbullet::Constants
@@ -116,14 +118,14 @@ module Pushbullet
     end
 
     def parse_body(response, path)
-      parsed_response = JSON.parse(response.body) # Purposely not using HTTParty
+      parsed_response = Oj.load(response.body) # Purposely not using HTTParty
 
       if parsed_response.dig(path.to_s)
         parsed_response.dig(path.to_s)
       else
         parsed_response
       end
-    rescue JSON::ParserError => _e
+    rescue Oj::ParseError => _e
       response.body
     end
 
