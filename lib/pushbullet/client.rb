@@ -94,8 +94,28 @@ module Pushbullet
       {
         'body' => parse_body(response, path),
         'headers' => response.headers,
+        'status' => response.code,
+        'rate_limit' => construct_rate_limit(response),
         'metadata' => construct_metadata(response, start_time, end_time)
       }
+    end
+
+    # See https://docs.pushbullet.com/ "Ratelimiting": a request costs 1 and each database
+    # operation (roughly each object returned) costs 4. 'reset' is Unix time in seconds.
+    # Values are nil when the server did not send the header.
+    def construct_rate_limit(response)
+      headers = response.headers
+      return { 'limit' => nil, 'remaining' => nil, 'reset' => nil } unless headers
+
+      {
+        'limit' => integer_header(headers['x-ratelimit-limit']),
+        'remaining' => integer_header(headers['x-ratelimit-remaining']),
+        'reset' => integer_header(headers['x-ratelimit-reset'])
+      }
+    end
+
+    def integer_header(value)
+      value.nil? || value.to_s.empty? ? nil : value.to_i
     end
 
     def construct_metadata(response, start_time, end_time)

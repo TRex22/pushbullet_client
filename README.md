@@ -30,6 +30,25 @@ Or install it yourself as:
 
 ```
 
+### Responses
+Every call returns a hash with `body`, `headers`, `status` (HTTP code), `metadata` (including the
+`cursor` for the next page) and `rate_limit`.
+
+`rate_limit` is `{ 'limit', 'remaining', 'reset' }` parsed from the `X-Ratelimit-*` headers
+(`reset` is Unix time in seconds; any value is `nil` if the header was not sent). Per the
+[docs](https://docs.pushbullet.com/), a request costs 1 and each database operation (roughly each
+object returned) costs 4, so a page of 250 pushes costs about 1001. Exceeding the limit returns
+HTTP 429.
+
+### Syncing cheaply
+```ruby
+  # Only pushes modified since your newest stored one: a handful of units, not a whole page
+  client.pushes(modified_after: newest_modified)
+
+  # Leave out deleted pushes
+  client.pushes(active: true)
+```
+
 ### Endpoints
   - Chats
   - Devices
