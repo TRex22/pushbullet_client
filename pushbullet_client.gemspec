@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
 
   # Development dependancies
   spec.add_development_dependency "rake", "~> 13.3.1"
-  spec.add_development_dependency "minitest", "~> 6.0.2"
+  spec.add_development_dependency "minitest", "~> 6.1.0"
   spec.add_development_dependency "minitest-focus", "~> 1.4.1"
   spec.add_development_dependency "minitest-reporters", "~> 1.7.1"
   spec.add_development_dependency "timecop", "~> 0.9.10"
