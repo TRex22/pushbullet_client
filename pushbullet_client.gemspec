@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "timecop", "~> 0.9.10"
   spec.add_development_dependency "mocha", "~> 3.1.0"
   spec.add_development_dependency "pry", "~> 0.16.0"
-  spec.add_development_dependency "webmock", "~> 3.26.2"
+  spec.add_development_dependency "webmock", "~> 3.38.0"
   spec.add_development_dependency "bundler-audit", "~> 0.9.3"
   spec.add_development_dependency "dotenv", "~> 2.8"
 end
