@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency "httparty", "~> 0.24.3"
+  spec.add_dependency "httparty", ">= 0.24.3", "< 0.26.0"
   spec.add_dependency "nokogiri", "~> 1.19.7"
   spec.add_dependency "oj", "~> 3.17.8"
 
